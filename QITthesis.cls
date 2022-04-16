@@ -29,7 +29,7 @@
 % 参考文献样式
 % 设置为gb7714-2015格式
 \RequirePackage[style=gb7714-2015]{biblatex}
-\addbibresource{citation.bib}
+\addbibresource{bibliography.bib}
 % 设置页眉、页脚
 \pagestyle{fancy}
 % 设置三线表线条的粗细
