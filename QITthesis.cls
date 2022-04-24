@@ -65,7 +65,7 @@
 \renewcommand\thetable{\thesection-\arabic{table}}
 \renewcommand\theequation{\thesection-\arabic{equation}}
 % 设置目录样式
-\titlecontents{section}[0pt]{\zihao{4}}{\thecontentslabel\hspace{.5\ccwd}}{\thecontentslabel}{\zihao{-4}\titlerule*{.}\contentspage}
+\titlecontents{section}[0pt]{\zihao{4}}{\thecontentslabel\hspace{.5\ccwd}}{}{\zihao{-4}\titlerule*{.}\contentspage}
 \titlecontents{subsection}[1.5\ccwd]{\zihao{-4}}{\thecontentslabel\hspace{.5\ccwd}}{}{\zihao{-4}\titlerule*{.}\contentspage}
 \titlecontents{subsubsection}[2.5\ccwd]{\zihao{-4}}{\thecontentslabel\hspace{.5\ccwd}}{}{\zihao{-4}\titlerule*{.}\contentspage}
 % 正文标题样式设定
