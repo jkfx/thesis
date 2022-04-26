@@ -7,6 +7,8 @@
 \RequirePackage{graphicx}
 % 字体宏包
 \RequirePackage{fontspec}
+% 子标题宏包
+\RequirePackage{subcaption}
 % 页面设置宏包
 \RequirePackage{geometry}
 % 目录样式设置宏包
