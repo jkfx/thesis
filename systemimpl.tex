@@ -181,5 +181,125 @@
     \label{fig:empleatd}
 \end{figure}
 
+\subsection{模型训练}
+
+本系统选用预训练的MTCNN网络模型作为人脸识别系统中的人脸检测与人脸对齐模块，选用基于CASIA-Webface人脸数据集预训练的Facenet网络模型。为了提升佩戴口罩的人脸识别准确率，本文使用MaskTheFace工具对CASIA-Webface人脸数据集进行模拟佩戴口罩来构造训练数据集CASIA-Webmaskedface用于微调模型，如图\ref{fig:cmrsds}所示，为了作为对比，图\ref{fig:owebface}为原CASIA-Webface人脸数据集，图\ref{fig:webmakedface}为使用MaskTheFace工具模拟佩戴口罩后的人脸数据集CASIA-Webmaskedface。构造后的CASIA-Webmaskedface模拟佩戴口罩人脸数据集有10,575位人物共494,414张人脸图像。
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/4webface.png}
+        \subcaption{原CASIA-Webface人脸数据集样本图}
+        \label{fig:owebface}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}{.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/5webmaskedface.png}
+        \subcaption{模拟佩戴口罩数据集样本图}
+        \label{fig:webmakedface}
+    \end{subfigure}
+    \caption{模拟佩戴口罩人脸数据集对比图}
+    \label{fig:cmrsds}
+\end{figure}
+
+Facenet网络模型的骨干架构使用的是Inception Resnet V1模型，该模型的网络架构如图\ref{fig:resnetarc}所示。其中输入为$160\times 160$的剪裁后的人脸图像，输出为512维的图像embedding编码。
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/5modelarc.png}
+    \caption{Inception Resnet V1模型架构图}
+    \label{fig:resnetarc}
+\end{figure}
+
+\subsubsection{模型参数}
+
+本系统使用的Facenet网络模型的参数数量如表\ref{tab:modelparams}所示，其中该网络模型前三层为卷积层、一个最大化池化层、之后继续为3个卷积层。随后跟着2对repeat与mixed模块，其中repeat模块中包含了若干数量的Block块，每个Block块都含有并行的卷积层与残差模块结合，使用ReLU激活函数；mixed模块中包含了将若干数量的卷积层与最大化池化层并行传输。之后为调整的平均池化层与Dropout层用来防止过拟合，其中Dropout的概率为0.6。最后跟着一个全连接层将输出映射为512维向量，然后跟着一个Batchnorm将输出进行规范化，最后输出为512维的embedding编码。该网络模型共23,482,624个用于训练的参数。
+
+\begin{table}[H]
+    \zihao{5}
+    \centering
+    \caption{Facenet网络模型参数量表}
+    \label{tab:modelparams}
+    \begin{tabular}{rrr}
+        \toprule
+        Layer (type)          & Output Shape     & Param \# \\
+        \midrule
+        Conv2d-1              & [-1, 32, 79, 79] & 864      \\
+        BatchNorm2d-2         & [-1, 32, 79, 79] & 64       \\
+        ReLU-3                & [-1, 32, 79, 79] & 0        \\
+        BasicConv2d-4         & [-1, 32, 79, 79] & 0        \\
+        Conv2d-5              & [-1, 32, 77, 77] & 9,216    \\
+        BatchNorm2d-6         & [-1, 32, 77, 77] & 64       \\
+        ReLU-7                & [-1, 32, 77, 77] & 0        \\
+        $\vdots$              & $\vdots$         & $\vdots$ \\
+        BasicConv2d-509       & [-1, 192, 3, 3]  & 0        \\
+        Conv2d-510            & [-1, 1792, 3, 3] & 689,920  \\
+        Block8-511            & [-1, 1792, 3, 3] & 0        \\
+        AdaptiveAvgPool2d-512 & [-1, 1792, 1, 1] & 0        \\
+        Dropout-513           & [-1, 1792, 1, 1] & 0        \\
+        Linear-514            & [-1, 512]        & 917,504  \\
+        BatchNorm1d-515       & [-1, 512]        & 1,024    \\
+        % \midrule
+        % Total params:         & 23,482,624       &          \\
+        % Trainable params:     & 23,482,624       &          \\
+        % Non-trainable params: & 0                &          \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+关于超参数方面，在本系统使用的Facenet网络模型中，batch size（数据批量大小）为64，训练集与验证集之比为8:2;优化算法使用Adam算法，其中学习率$\gamma$为0.001、$\beta_{1}$为0.9、$\beta_{2}$为0.999、$\epsilon$为1e-08、$\lambda$（weight decay）为0；学习率调度算法为MultiStepLR，其中milestone区间为$(5,10)$、$\gamma$为0.1；最后，在整个训练集之上训练的epoch次数为8。关于数据增强（data augmentation）方面，由于本文所使用的训练数据集足够大，所以并没有做数据增强方面的工作，仅把图像像素值标准化。
+
+在训练过程，模型的准确率与损失值如图\ref{fig:mdmtx}所示，图\ref{fig:acc}为模型准确率变化，图\ref{fig:loss}为损失值变化。最终模型在训练集上的准确率94.29\%为，损失值为0.3336；在验证集上的准确率为80.04\%，损失值为1.3949。
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/5acc.png}
+        \subcaption{模型训练阶段准确率图}
+        \label{fig:acc}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}{.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/5loss.png}
+        \subcaption{模型训练阶段损失值图}
+        \label{fig:loss}
+    \end{subfigure}
+    \caption{模型训练阶段性能指标图}
+    \label{fig:mdmtx}
+\end{figure}
+
+\subsubsection{模型评估}
+
+当预训练的Facenet模型在CASIA-Webmaskedface模拟佩戴口罩人脸数据集上训练了8个epoch之后，使用LFW与MFR2测试数据集进行模型性能的比较。如表\ref{tab:mdcprs}所示，原Facenet网络模型在LFW与MFR2测试数据的准确率为表格中的第一行，使用了CASIA-Webmaskedface模拟佩戴口罩人脸数据集微调（finetune）之后，MaskedFacenet在LFW与MFR2测试数据集上的模型性能为表格中的第二行。可以看到，使用了CASIA-Webmaskedface模拟佩戴口罩人脸数据集对模型进行微调之后，该模型在LFW人脸测试数据集的准确率稍微有点下降，但是对于真实世界环境中的佩戴口罩人脸数据集MFR2却有了很大的提升，在MFR2测试数据集上的准确率有95.27\%的准确率，相比较与Facenet网络模型提升了6.14\%的准确率。所以本系统所使用的网络模型在佩戴口罩的情况下对人脸识别的准确率有着比较大的提升空间。
+
+\begin{table}[H]
+    \zihao{5}
+    \centering
+    \caption{网络模型性能比较表}
+    \label{tab:mdcprs}
+    \begin{tabular}{rrr}
+        \toprule
+        模型 & LFW准确率 & MFR2准确率 \\
+        \midrule
+        Facenet & 98.53\% & 89.13\% \\
+        MaskedFacenet & 95.43\% & 95.27\% \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
 \subsection{人脸识别功能实现}
 
+工厂管理员进入后台页面，可以使用人脸识别模块对当前员工进行，通过比较阈值之后，将识别到的员工信息与签到时间插入到员工签到记录表中，具体流程如图\ref{fig:fcprcs}所示。
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/5fcprcs.png}
+    \caption{人脸识别签到流程图}
+    \label{fig:fcprcs}
+\end{figure}
+
+当系统管理员调用人脸识别签到功能时，该模块首先从摄像头拍摄图像，将图像输入进MTCNN模型来对图像中的人脸进行检测，若没有检测到人脸，便从系统中弹出拍摄框并且回到摄像头拍摄进行重新拍摄；若检测到人脸存在，就将人脸区域的图像进行裁剪，裁剪的尺寸为160$\times$160的像素；将裁剪后的人脸图像输入进MaskedFacenet网络模型中，计算当前人脸图像的embedding编码；之后将系统中保存的员工人脸图像的embedding编码与刚刚计算的人脸图像embedding编码进行比较，计算二者们的$L_2$范数，也即两者之间在欧式空间中的距离，之后挑选出距离最小的图像对，换句话说也就是相似度最高的员工图像，然后使用阈值比较，本文使用的阈值为1，若小于这个阈值，便判定为当前拍摄的员工为人脸数据库中的员工，之后便将签到时间与员工信息插入到员工签到记录表中，便实现了人脸识别签到功能。
