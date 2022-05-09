@@ -9,6 +9,10 @@
 \RequirePackage{fontspec}
 % 子标题宏包
 \RequirePackage{subcaption}
+% % svg格式支持宏包
+% \RequirePackage{svg}
+% tabularx 表格宏包
+\RequirePackage{tabularx}
 % 页面设置宏包
 \RequirePackage{geometry}
 % 目录样式设置宏包

@@ -1,0 +1,90 @@
+%% Creator: Inkscape 1.1.2 (08b2f3d93c, 2022-04-05), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file '3loginprocess_svg-tex.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{439.39057647bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,1.24203278)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{3loginprocess_svg-tex.pdf}}%
+    \put(0.09192408,1.20874804){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}首页\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{3loginprocess_svg-tex.pdf}}%
+    \put(0.06802735,1.0273889){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}登录页面\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{3loginprocess_svg-tex.pdf}}%
+    \put(0.06930753,0.84602975){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}是否注册\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{3loginprocess_svg-tex.pdf}}%
+    \put(0.06930753,0.64034714){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}记住密码\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{3loginprocess_svg-tex.pdf}}%
+    \put(0.06802735,0.43466453){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}输入账号密码登录\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{3loginprocess_svg-tex.pdf}}%
+    \put(0.06930753,0.23896735){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}输入正确\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{3loginprocess_svg-tex.pdf}}%
+    \put(0.06802735,0.03328474){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}登录成功\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{3loginprocess_svg-tex.pdf}}%
+    \put(0.37271072,0.23896735){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}账号密码错误\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{3loginprocess_svg-tex.pdf}}%
+    \put(0.66971299,0.64034714){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}找回密码\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{3loginprocess_svg-tex.pdf}}%
+    \put(0.8847836,0.84602975){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}注册页面\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{3loginprocess_svg-tex.pdf}}%
+    \put(0.12435537,0.77391282){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}yes\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{3loginprocess_svg-tex.pdf}}%
+    \put(0.23445104,0.86309885){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}no\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{3loginprocess_svg-tex.pdf}}%
+    \put(0.12435537,0.56823021){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}yes\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=14]{3loginprocess_svg-tex.pdf}}%
+    \put(0.23445104,0.65741624){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}no\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=15]{3loginprocess_svg-tex.pdf}}%
+    \put(0.12435537,0.16685037){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}yes\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=16]{3loginprocess_svg-tex.pdf}}%
+    \put(0.23445104,0.2560364){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}no\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=17]{3loginprocess_svg-tex.pdf}}%
+  \end{picture}%
+\endgroup%
