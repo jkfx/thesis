@@ -217,6 +217,15 @@ TripletLoss可以直接反映出人脸验证、识别和聚类所能达到的效
     \label{fig:4totalerf}
 \end{figure}
 
+根据E--R图，可得到该系统的关系模式：\\
+账号（\underline{账户id}，组织名称，电子邮件，电话号码，用户名，密码）\\
+客户（\underline{客户id}，姓名，电话号码，收货地址）\\
+订单（\underline{订单id}，下单日期，送达日期，是否送达，总共数量）\\
+员工（\underline{员工id}，姓名，性别，电话号码，出生日期，住址，职称，基本工资，奖金，入职日期，是否支付薪资）\\
+薪资（\underline{薪资id}，基本工资，奖金，共计，支付日期）\\
+产品（\underline{产品id}，名称，重量，成本，报酬）\\
+原材料（\underline{原材料id}，名称，成本，可用数量，制造百分比）
+
 \subsubsection{物理设计}
 
 在工厂管理中，首先要对三种不同的实体人物进行抽象，有员工信息、客户信息以及供应商信息。分别对三种实体信息进行抽象抽取，设计数据库关系，如表\ref{tab:emp}所示，给出了员工信息的关系表。
@@ -224,24 +233,25 @@ TripletLoss可以直接反映出人脸验证、识别和聚类所能达到的效
 \begin{table}[H]
     \centering
     \zihao{5}
-    \caption{员工信息设计表}
+    \caption{员工信息数据表}
     \label{tab:emp}
-    \begin{tabularx}{.85\textwidth}{X<{\centering}X<{\centering}X<{\centering}X<{\centering}}
+    \begin{tabularx}{.95\textwidth}{X<{\centering}X<{\centering}X<{\centering}X<{\centering}X<{\centering}}
         \toprule
-        字段名 & 数据类型 & 默认值 & 描述信息 \\
+        字段名 & 数据类型 & 默认值 & 是否主键 & 描述信息 \\
         \midrule
-        name & CharField & NULL & 员工姓名 \\
-        basicSalary & DecimalField & 0 & 基本工资 \\
-        bonus & DecimalField & 0 & 奖金 \\
-        total & DecimalField & 0 & 工资共计 \\
-        isPaid & BooleanField & False & 是否支付薪资 \\
-        lastSalary & DateField & NULL & 薪资更新日期 \\
-        designation & CharField & 其他 & 职称 \\
-        address & CharField & NULL & 员工地址 \\
-        phone & CharField & NULL & 电话号码 \\
-        dob & DateField & NULL & 出生日期 \\
-        doj & DateField & NULL & 入职日期 \\
-        gender & IntegerField & 2 & 性别 \\
+        id & Integer & NULL & 是 & 员工表主键 \\
+        name & Char & NULL & 否 & 员工姓名 \\
+        basicSalary & Decimal & 0 & 否 & 基本工资 \\
+        bonus & Decimal & 0 & 否 & 奖金 \\
+        total & Decimal & 0 & 否 & 工资共计 \\
+        isPaid & Boolean & False & 否 & 是否支付薪资 \\
+        lastSalary & Date & NULL & 否 & 薪资更新日期 \\
+        designation & Char & 其他 & 否 & 职称 \\
+        address & Char & NULL & 否 & 员工地址 \\
+        phone & Char & NULL & 否 & 电话号码 \\
+        dob & Date & NULL & 否 & 出生日期 \\
+        doj & Date & NULL & 否 & 入职日期 \\
+        gender & Integer & 2 & 否 & 性别 \\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -251,25 +261,59 @@ TripletLoss可以直接反映出人脸验证、识别和聚类所能达到的效
 \begin{table}[H]
     \centering
     \zihao{5}
-    \caption{产品信息设计表}
+    \caption{产品信息数据表}
     \label{tab:product}
-    \begin{tabularx}{.85\textwidth}{X<{\centering}X<{\centering}X<{\centering}X<{\centering}}
+    \begin{tabularx}{.95\textwidth}{X<{\centering}X<{\centering}X<{\centering}X<{\centering}X<{\centering}}
         \toprule
-        字段名 & 数据类型 & 默认值 & 描述信息 \\
+        字段名 & 数据类型 & 默认值 & 是否主键 & 描述信息 \\
         \midrule
-        name & CharField & NULL & 产品名称 \\
-        cost & DecimalField & NULL & 产品成本 \\
-        wages & DecimalField & NULL & 产品利润 \\
-        weight & DecimalField & NULL& 产品重量 \\
+        id & Integer & NULL & 是 & 产品表主键 \\
+        name & Char & NULL & 否 & 产品名称 \\
+        cost & Decimal & NULL & 否 & 产品成本 \\
+        wages & Decimal & NULL & 否 & 产品利润 \\
+        weight & Decimal & NULL & 否 & 产品重量 \\
         \bottomrule
     \end{tabularx}
 \end{table}
 
-之后将所有独立的实体表进行定义基数关系，其中包含在客户对某个产品进行下单时，定义客户表和产品表之间的多对多关系的订单表；在员工生产某一个产品时就会有多对多关系的工作表；供应商对某一种原材料进行供应时的多对多的供应表等，如图\ref{fig:er}所示，展示本系统关键实体的的E-R关系图。
+在与客户进行订单合作，根据抽象设计的关系模式设计订单表，如表\ref{tab:order}所示。
 
-\begin{figure}[H]
+\begin{table}[H]
     \centering
-    \includegraphics[width=.75\textwidth]{figures/4er.jpg}
-    \caption{系统关键实体E-R图}
-    \label{fig:er}
-\end{figure}
+    \zihao{5}
+    \caption{订单详情数据表}
+    \label{tab:order}
+    \begin{tabularx}{.95\textwidth}{X<{\centering}X<{\centering}X<{\centering}X<{\centering}X<{\centering}}
+        \toprule
+        字段名 & 数据类型 & 默认值 & 是否主键 & 描述信息 \\
+        \midrule
+        id & Integer & NULL & 是 & 订单表主键 \\
+        customer & ForeignKey & NULL & 否 & 客户 \\
+        Odate & Date & NULL & 否 & 下单日期 \\
+        Ddate & Date & NULL & 否 & 送达日期 \\
+        total & Decimal & NULL & 否 & 订单总重量 \\
+        delivered & Boolean & False & 否 & 是否送达 \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+除对员工实体信息管理之外，该系统还要根据员工薪资体系关系模式，设计出薪资表来记录员工薪资信息，其中包括员工的基本工资、奖金以及支付日期等，如表\ref{tab:salarytab}所示。
+
+\begin{table}[H]
+    \centering
+    \zihao{5}
+    \caption{员工薪资数据表}
+    \label{tab:salarytab}
+    \begin{tabularx}{.95\textwidth}{X<{\centering}X<{\centering}X<{\centering}X<{\centering}X<{\centering}}
+        \toprule
+        字段名 & 数据类型 & 默认值 & 是否主键 & 描述信息 \\
+        \midrule
+        id & Integer & NULL & 是 & 薪资表主键 \\
+        employee & ForeignKey & NULL & 否 & 员工 \\
+        basicS & Decimal & NULL & 否 & 基本工资 \\
+        bonus & Decimal & NULL & 否 & 奖金 \\
+        total & Decimal & NULL & 否 & 薪资共计 \\
+        paidDate & Date & NULL & 否 & 支付日期 \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
