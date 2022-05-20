@@ -2,6 +2,8 @@
 
 \subsection{注册登录功能测试}
 
+系统测试是针对整个产品系统进行的测试，目的是验证系统是否满足了需求规格的定义，找出与需求规格不符或与之矛盾的地方，从而提出更加完善的方案。系统测试发现问题之后要经过调试找出错误原因和位置，然后进行改正，是基于系统整体需求说明书的黑盒类测试，应覆盖系统所有联合的部件。
+
 进入到智慧工厂管理系统之后，在上方导航栏处有登陆按钮，点击之后即可输入账号名与密码进行登录，对于初次使用本系统的工厂管理人员，在登录界面有方有注册按钮，即可对当前部门组织进行注册。如表\ref{tab:rgstlgfuct}所示注册登录功能的用例表。
 
 \begin{table}[H]
@@ -42,7 +44,7 @@
 
 \subsection{工厂信息管理功能测试}
 
-进入后台管理页面之后，可以对当前工厂部门组织的信息进行管理，其中包括交易记录管理、员工信息管理、客户信息管理、供应商信息管理、产品信息管理以及原材料信息管理等。表\ref{tab:ifmtmngmt}为工厂信息管理功能的测试用例表。
+进入后台管理页面之后，可以对当前工厂部门组织的信息进行管理，其中包括交易记录管理、员工信息管理、客户信息管理、供应商信息管理、产品信息管理以及原材料信息管理等。表\ref{tab:ifmtmngmt}为工厂信息管理功能的测试用例表。在单元上执行集成测试后，这些单元将组合到各个模块中，然后必须将其作为一个完整的系统进行系统测试。
 
 \begin{table}[H]
     \zihao{5}
@@ -132,33 +134,33 @@
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}{.35\textwidth}
+    \begin{subfigure}{.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{figures/6viewallcustomer.png}
         % \subcaption{查看客户信息详情图}
         % \label{fig:vuacstm}
     \end{subfigure}
     \qquad
-    \begin{subfigure}{.35\textwidth}
+    \begin{subfigure}{.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{figures/6addnewcustomer.png}
         % \subcaption{添加客户测试图}
         % \label{fig:adnucstm}
     \end{subfigure}
-    \\
-    \begin{subfigure}{.35\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{figures/6viewallorders.png}
-        % \subcaption{查看所有客户订单测试图}
-        % \label{fig:vuaods}
-    \end{subfigure}
-    \qquad
-    \begin{subfigure}{.35\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{figures/6orderdetails.png}
-        % \subcaption{查看订单收据测试图}
-        % \label{fig:vuoddtls}
-    \end{subfigure}
+    % \\
+    % \begin{subfigure}{.35\textwidth}
+    %     \centering
+    %     \includegraphics[width=\textwidth]{figures/6viewallorders.png}
+    %     % \subcaption{查看所有客户订单测试图}
+    %     % \label{fig:vuaods}
+    % \end{subfigure}
+    % \qquad
+    % \begin{subfigure}{.35\textwidth}
+    %     \centering
+    %     \includegraphics[width=\textwidth]{figures/6orderdetails.png}
+    %     % \subcaption{查看订单收据测试图}
+    %     % \label{fig:vuoddtls}
+    % \end{subfigure}
     \caption{客户信息管理测试图}
     \label{fig:cstmtst}
 \end{figure}
@@ -194,20 +196,20 @@
         % \subcaption{添加新产品功能测试图}
         % \label{fig:adnuprdct}
     \end{subfigure}
-    \\
-    \begin{subfigure}{.35\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{figures/6viewallmaterial.png}
-        % \subcaption{查看所有原材料详情测试图}
-        % \label{fig:vuamtra}
-    \end{subfigure}
-    \qquad
-    \begin{subfigure}{.35\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{figures/6addnewmaterial.png}
-        % \subcaption{添加新原材料类型测试图}
-        % \label{fig:adnumtra}
-    \end{subfigure}
+    % \\
+    % \begin{subfigure}{.35\textwidth}
+    %     \centering
+    %     \includegraphics[width=\textwidth]{figures/6viewallmaterial.png}
+    %     % \subcaption{查看所有原材料详情测试图}
+    %     % \label{fig:vuamtra}
+    % \end{subfigure}
+    % \qquad
+    % \begin{subfigure}{.35\textwidth}
+    %     \centering
+    %     \includegraphics[width=\textwidth]{figures/6addnewmaterial.png}
+    %     % \subcaption{添加新原材料类型测试图}
+    %     % \label{fig:adnumtra}
+    % \end{subfigure}
     \caption{其它功能测试图}
     \label{fig:otstst}
 \end{figure}
