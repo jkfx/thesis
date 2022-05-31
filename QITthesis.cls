@@ -7,6 +7,8 @@
 \RequirePackage{graphicx}
 % 字体宏包
 \RequirePackage{fontspec}
+% 插入pdf页面宏包
+\RequirePackage{pdfpages}
 % 子标题宏包
 \RequirePackage{subcaption}
 % % svg格式支持宏包
